@@ -13,15 +13,18 @@ ENV \
   CUSTOM_PORT="8080" \
   CUSTOM_HTTPS_PORT="8181" \
   HOME="/config" \
-  TITLE="Calibre"
+  TITLE="Gnucash"
 
 RUN \
   echo "**** install runtime packages ****" && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
+    at-spi2-core \
     dbus \
     fcitx-rime \
     fonts-wqy-microhei \
+    gir1.2-gtk-3.0 \
+    gobject-introspection \
     jq \
     libnss3 \
     libopengl0 \
@@ -35,14 +38,16 @@ RUN \
     libxcb-xinerama0 \
     poppler-utils \
     python3 \
+    python3-gi \
     python3-xdg \
     ttf-wqy-zenhei \
     wget \
     xz-utils  && \
-  apt-get install -y \
-    gnucash  && \
-  sed -i 's|</applications>|  <application title="gnucash" type="normal">\n    <maximized>yes</maximized>\n  </application>\n</applications>|' /etc/xdg/openbox/rc.xml && \
-  echo "**** cleanup ****" && \
+  sed -i 's|</applications>|  <application title="gnucash" type="normal">\n    <maximized>yes</maximized>\n  </application>\n</applications>|' /etc/xdg/openbox/rc.xml
+RUN apt-get install -y build-essential git cmake libtool libltdl-dev libglib2.0-dev icu-devtools libicu-dev libboost-all-dev libxml++2.6-dev libxslt1-dev xsltproc libgtest-dev google-mock gtk+3.0 libgtk-3-dev libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev cmake libdbi-dev libxml2-utils libofx-dev
+RUN apt-get install -y guile-2.2 guile-2.2-dev swig3.0
+RUN apt-get install -y gnucash
+RUN  echo "**** cleanup ****" && \
   apt-get clean && \
   rm -rf \
     /tmp/* \

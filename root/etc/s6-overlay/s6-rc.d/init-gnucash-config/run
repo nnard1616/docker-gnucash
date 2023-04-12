@@ -2,11 +2,11 @@
 # shellcheck shell=bash
 
 # make our folders
-mkdir -p /config/.config/calibre
+mkdir -p /config/.config/gnucash
 
 # set webserver port on first install
-if [[ ! -f /config/.config/calibre/server-config.txt ]]; then
-    echo "port 8081" > /config/.config/calibre/server-config.txt
+if [[ ! -f /config/.config/gnucash/server-config.txt ]]; then
+    echo "port 8081" > /config/.config/gnucash/server-config.txt
 fi
 
 # default file copies first run
@@ -18,5 +18,5 @@ fi
 
 # permissions
 lsiown -R abc:abc \
-    /config \
-    /opt/calibre
+    /config 
+    #/opt/gnucash
