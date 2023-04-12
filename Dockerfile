@@ -29,6 +29,7 @@ RUN \
     libnss3 \
     libopengl0 \
     libqpdf28 \
+    librsvg2-common \
     libxkbcommon-x11-0 \
     libxcb-icccm4 \
     libxcb-image0 \
@@ -44,10 +45,9 @@ RUN \
     wget \
     xz-utils  && \
   sed -i 's|</applications>|  <application title="gnucash" type="normal">\n    <maximized>yes</maximized>\n  </application>\n</applications>|' /etc/xdg/openbox/rc.xml
-RUN apt-get install -y build-essential git cmake libtool libltdl-dev libglib2.0-dev icu-devtools libicu-dev libboost-all-dev libxml++2.6-dev libxslt1-dev xsltproc libgtest-dev google-mock gtk+3.0 libgtk-3-dev libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev cmake libdbi-dev libxml2-utils libofx-dev
-RUN apt-get install -y guile-2.2 guile-2.2-dev swig3.0
 RUN apt-get install -y gnucash
 RUN  echo "**** cleanup ****" && \
+  /usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/gdk-pixbuf-query-loaders --update-cache && \
   apt-get clean && \
   rm -rf \
     /tmp/* \
