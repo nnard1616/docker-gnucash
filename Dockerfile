@@ -19,6 +19,7 @@ RUN \
   echo "**** install runtime packages ****" && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
+    adwaita-icon-theme-full \
     at-spi2-core \
     dbus \
     fcitx-rime \
@@ -26,6 +27,7 @@ RUN \
     gir1.2-gtk-3.0 \
     gobject-introspection \
     jq \
+    libgtk-3-dev \
     libnss3 \
     libopengl0 \
     libqpdf28 \
